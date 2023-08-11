@@ -1,7 +1,9 @@
 const memoriesState = globalState() 
+const lastCalculatedValue = globalState()
 
 function globalState() {
     const stateObject = {}
+    let calculatedValue
 
     return {
         setProperty: (memoryName, input=0) => {
@@ -11,20 +13,13 @@ function globalState() {
         getState: () => stateObject,
         getEntries: () => Object.entries(stateObject),
         hasProperty: (memoryName) => stateObject.hasOwnProperty(memoryName) ? true : false,
-    }
-}
-
-const lastCalculatedValue = globalVariable()
-
-function globalVariable() {
-    let variable
-    return {
         setVariable: (input) => {
-            variable = input
+            calculatedValue = input
         },
-        getVariable: () => variable,
+        getVariable: () => calculatedValue,
     }
 }
+
 
 function extractCommand(input) {
     
